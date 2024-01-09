@@ -1,15 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Tic Tac Toe Game</title>
  <style>
-    table, td {
-      border: 1px solid black;
-      width: 200px;
-      height: 200px;
-      text-align: center;
-      vertical-align: middle;
-      font-size: 20px;
-    }
+ body {
+    display: grid;
+    height: 100vh;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+ }
+
+ #gameBoard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    background-color: #333;
+    border: 5px solid #000;
+    border-radius: 10px;
+ }
+
+ td {
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+    color: #fff;
+    border: 1px solid #000;
+    cursor: pointer;
+ }
+
+ h2, h3 {
+    text-align: center;
+    color: #333;
+ }
  </style>
 </head>
 <body>
@@ -60,17 +89,3 @@
     var col3 = cells[2].innerHTML === cells[5].innerHTML && cells[5].innerHTML === cells[8].innerHTML && cells[2].innerHTML !== '';
     var diag1 = cells[0].innerHTML === cells[4].innerHTML && cells[4].innerHTML === cells[8].innerHTML && cells[0].innerHTML !== '';
     var diag2 = cells[2].innerHTML === cells[4].innerHTML && cells[4].innerHTML === cells[6].innerHTML && cells[2].innerHTML !== '';
-
-    if (row1 || row2 || row3 || col1 || col2 || col3 || diag1 || diag2) {
-      statusDisplay.innerHTML = 'Player ' + player + ' wins!';
-      return true;
-    } else if (cells[0].innerHTML !== '' && cells[1].innerHTML !== '' && cells[2].innerHTML !== '' && cells[3].innerHTML !== '' && cells[4].innerHTML !== '' && cells[5].innerHTML !== '' && cells[6].innerHTML !== '' && cells[7].innerHTML !== '' && cells[8].innerHTML !== '') {
-      statusDisplay.innerHTML = 'It\'s a tie!';
-      return true;
-    }
-    return false;
- }
-</script>
-
-</body>
-</html>
