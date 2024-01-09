@@ -76,9 +76,11 @@
       return;
     }
     cells[cellIndex].innerHTML = player;
-    checkForWin();
+    if (checkForWin()) {
+      return;
+    }
     player = (player === 'X') ? 'O' : 'X';
- }
+}
 
  function checkForWin() {
     var row1 = cells[0].innerHTML === cells[1].innerHTML && cells[1].innerHTML === cells[2].innerHTML && cells[0].innerHTML !== '';
@@ -89,3 +91,13 @@
     var col3 = cells[2].innerHTML === cells[5].innerHTML && cells[5].innerHTML === cells[8].innerHTML && cells[2].innerHTML !== '';
     var diag1 = cells[0].innerHTML === cells[4].innerHTML && cells[4].innerHTML === cells[8].innerHTML && cells[0].innerHTML !== '';
     var diag2 = cells[2].innerHTML === cells[4].innerHTML && cells[4].innerHTML === cells[6].innerHTML && cells[2].innerHTML !== '';
+
+    if (row1 || row2 || row3 || col1 || col2 || col3 || diag1 || diag2) {
+      alert('Player ' + player + ' wins!');
+      return true;
+    } else if (cells[0].innerHTML !== '' && cells[1].innerHTML !== '' && cells[2].innerHTML !== '' && cells[3].innerHTML !== '' && cells[4].innerHTML !== '' && cells[5].innerHTML !== '' && cells[6].innerHTML !== '' && cells[7].innerHTML !== '' && cells[8].innerHTML !== '') {
+      alert('It\'s a tie!');
+      return true;
+    }
+    return false;
+}
