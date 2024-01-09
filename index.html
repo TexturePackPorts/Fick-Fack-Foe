@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <style>
+    table, td {
+      border: 1px solid black;
+      width: 200px;
+      height: 200px;
+      text-align: center;
+      vertical-align: middle;
+      font-size: 20px;
+    }
+ </style>
+</head>
+<body>
+
+<h2>Tic Tac Toe Game</h2>
+
+<table id="gameBoard">
+ <tr>
+    <td id="cell0" onclick="makeMove(0)"></td>
+    <td id="cell1" onclick="makeMove(1)"></td>
+    <td id="cell2" onclick="makeMove(2)"></td>
+ </tr>
+ <tr>
+    <td id="cell3" onclick="makeMove(3)"></td>
+    <td id="cell4" onclick="makeMove(4)"></td>
+    <td id="cell5" onclick="makeMove(5)"></td>
+ </tr>
+ <tr>
+    <td id="cell6" onclick="makeMove(6)"></td>
+    <td id="cell7" onclick="makeMove(7)"></td>
+    <td id="cell8" onclick="makeMove(8)"></td>
+ </tr>
+</table>
+
+<h3 id="status"></h3>
+
+<script>
+ var player = 'X';
+ var cells = document.getElementsByTagName('td');
+ var statusDisplay = document.getElementById('status');
+
+ function makeMove(cellIndex) {
+    if (cells[cellIndex].innerHTML !== '') {
+      alert('Cell is already occupied. Choose another cell.');
+      return;
+    }
+    cells[cellIndex].innerHTML = player;
+    checkForWin();
+    player = (player === 'X') ? 'O' : 'X';
+ }
+
+ function checkForWin() {
+    var row1 = cells[0].innerHTML === cells[1].innerHTML && cells[1].innerHTML === cells[2].innerHTML && cells[0].innerHTML !== '';
+    var row2 = cells[3].innerHTML === cells[4].innerHTML && cells[4].innerHTML === cells[5].innerHTML && cells[3].innerHTML !== '';
+    var row3 = cells[6].innerHTML === cells[7].innerHTML && cells[7].innerHTML === cells[8].innerHTML && cells[6].innerHTML !== '';
+    var col1 = cells[0].innerHTML === cells[3].innerHTML && cells[3].innerHTML === cells[6].innerHTML && cells[0].innerHTML !== '';
+    var col2 = cells[1].innerHTML === cells[4].innerHTML && cells[4].innerHTML === cells[7].innerHTML && cells[1].innerHTML !== '';
+    var col3 = cells[2].innerHTML === cells[5].innerHTML && cells[5].innerHTML === cells[8].innerHTML && cells[2].innerHTML !== '';
+    var diag1 = cells[0].innerHTML === cells[4].innerHTML && cells[4].innerHTML === cells[8].innerHTML && cells[0].innerHTML !== '';
+    var diag2 = cells[2].innerHTML === cells[4].innerHTML && cells[4].innerHTML === cells[6].innerHTML && cells[2].innerHTML !== '';
+
+    if (row1 || row2 || row3 || col1 || col2 || col3 || diag1 || diag2) {
+      statusDisplay.innerHTML = 'Player ' + player + ' wins!';
+      return true;
+    } else if (cells[0].innerHTML !== '' && cells[1].innerHTML !== '' && cells[2].innerHTML !== '' && cells[3].innerHTML !== '' && cells[4].innerHTML !== '' && cells[5].innerHTML !== '' && cells[6].innerHTML !== '' && cells[7].innerHTML !== '' && cells[8].innerHTML !== '') {
+      statusDisplay.innerHTML = 'It\'s a tie!';
+      return true;
+    }
+    return false;
+ }
+</script>
+
+</body>
+</html>
